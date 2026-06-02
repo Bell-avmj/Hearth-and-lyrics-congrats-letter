@@ -454,3 +454,52 @@ lyricsBtn.addEventListener("click", () => {
 closeLyrics.addEventListener("click", () => {
   lyricsModal.classList.remove("show");
 });
+
+// ── LETTER ──
+const letterBtn = document.getElementById("letterBtn");
+const letterModal = document.getElementById("letterModal");
+const closeLetter = document.getElementById("closeLetter");
+
+letterBtn.addEventListener("click", () => {
+  letterModal.classList.add("show");
+  setTimeout(() => letterModal.classList.add("opened"), 50);
+});
+
+closeLetter.addEventListener("click", () => {
+  letterModal.classList.remove("opened");
+  setTimeout(() => letterModal.classList.remove("show"), 400);
+});
+
+letterModal.addEventListener("click", (e) => {
+  if (e.target === letterModal) {
+    letterModal.classList.remove("opened");
+    setTimeout(() => letterModal.classList.remove("show"), 400);
+  }
+});
+
+// ── MEMORIES ──
+const memoriesBtn = document.getElementById("memoriesBtn");
+const memoriesPanel = document.getElementById("memoriesPanel");
+const closeMemories = document.getElementById("closeMemories");
+const carouselTrack = document.getElementById("carouselTrack");
+const dotsContainer = document.getElementById("carouselDots");
+
+const slides = Array.from(carouselTrack.querySelectorAll(".mem-slide"));
+slides.forEach((_, i) => {
+  const dot = document.createElement("div");
+  dot.className = "dot" + (i === 0 ? " active" : "");
+  dot.addEventListener("click", () => {
+    carouselTrack.scrollTo({ top: i * carouselTrack.clientHeight, behavior: "smooth" });
+  });
+  dotsContainer.appendChild(dot);
+});
+
+carouselTrack.addEventListener("scroll", () => {
+  const index = Math.round(carouselTrack.scrollTop / carouselTrack.clientHeight);
+  dotsContainer.querySelectorAll(".dot").forEach((d, i) => {
+    d.classList.toggle("active", i === index);
+  });
+});
+
+memoriesBtn.addEventListener("click", () => memoriesPanel.classList.add("show"));
+closeMemories.addEventListener("click", () => memoriesPanel.classList.remove("show"));
