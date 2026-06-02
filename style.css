@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow: hidden;
+  background: #16000a;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  color: #ffdada;
+}
+
+.h1text {
+  font-family: "Lilita One", sans-serif;
+  font-weight: 100;
+  font-size: 2rem;
+  font-style: normal;
+}
+
+.webgl {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+/* MARCO BLANCO-- NO ME ENCANTA PERO ME GUSTA MÁS QUE SIN NADA, ASÍ QUE LO DEJO POR AHORA
+body::before {
+  content: "";
+  position: absolute;
+  border: 8px solid;
+  inset: 1rem;
+  z-index: 100;
+  pointer-events: none;
+}
+*/
+h1 {
+  position: absolute;
+  top: 10vh;
+  left: 2.5rem;
+  right: 1rem;
+  text-align: center;
+  font-family: ador-hairline, sans-serif;
+  font-weight: 900;
+  font-size: max(1rem, 3vh);
+}
+
+button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 12vh;
+  width: 12vh;
+  transform: translateY(2vh);
+  right: 0;
+  margin: auto;
+  -webkit-appearance: none;
+  background: transparent;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+svg {
+  width: 3.5vh;
+}
+
+#play-music{
+  display:none !important;
+}
+
+#lyricsBtn{
+  position:absolute;
+  top:20px;
+  right:20px;
+  z-index:1000;
+
+  background:rgba(255,137,172,.2);
+  border:2px solid #ff89ac;
+  color:white;
+
+  padding:12px 20px;
+  border-radius:20px;
+
+  cursor:pointer;
+  font-size:16px;
+  backdrop-filter:blur(10px);
+}
+
+#lyricsModal{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.6);
+
+  display:none;
+  justify-content:center;
+  align-items:center;
+
+  z-index:5000;
+}
+
+#lyricsModal.show{
+  display:flex;
+}
+
+#lyricsContent{
+  width:80%;
+  max-width:700px;
+  height:75vh;
+
+  background:#16000a;
+  border:2px solid #ff89ac;
+  border-radius:25px;
+
+  padding:30px;
+  overflow-y:auto;
+
+  color:white;
+}
+
+#closeLyrics{
+  position:sticky;
+  float:right;
+
+  width:40px;
+  height:40px;
+
+  border:none;
+  border-radius:50%;
+
+  background:#ff89ac;
+  color:white;
+
+  cursor:pointer;
+}
+
+.lyricsText{
+  margin-top:25px;
+  line-height:1.8;
+  white-space:pre-line;
+}
+
+#lyricsBtn{
+  position: fixed !important;
+  top: 25px !important;
+  right: 25px !important;
+  left: auto !important;
+  bottom: auto !important;
+
+  width: auto !important;
+  height: auto !important;
+
+  transform: none !important;
+  margin: 0 !important;
+
+  background: rgba(255,137,172,.2);
+  border: 2px solid #ff89ac;
+  color: white;
+
+  padding: 12px 20px;
+  border-radius: 20px;
+
+  cursor: pointer;
+  font-size: 16px;
+  backdrop-filter: blur(10px);
+
+  z-index: 1000;
+}
+
+#closeLyrics{
+  position: absolute !important;
+  top: 15px !important;
+  right: 15px !important;
+  left: auto !important;
+  bottom: auto !important;
+
+  width: 40px !important;
+  height: 40px !important;
+
+  transform: none !important;
+  margin: 0 !important;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #ff89ac;
+  color: white;
+
+  cursor: pointer;
+}
+
+/* ── Lyric lines ── */
+.lyric-line {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 10px;
+  margin: 2px 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.4s ease, background 0.4s ease, transform 0.3s ease;
+  cursor: default;
+}
+
+.lyric-line.section-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 137, 172, 0.4);
+  margin-top: 14px;
+  text-transform: uppercase;
+}
+
+.lyric-line.active-lyric {
+  color: #ffffff;
+  background: rgba(255, 137, 172, 0.15);
+  transform: translateX(6px);
+  font-weight: 600;
+}
+
+.lyric-line.active-lyric.section-label {
+  color: #ff89ac;
+  background: transparent;
+  transform: none;
+}
