@@ -198,7 +198,6 @@ svg {
 
   cursor: pointer;
 }
-
 /* ── Lyric lines ── */
 .lyric-line {
   display: block;
@@ -208,7 +207,12 @@ svg {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.35);
   transition: color 0.4s ease, background 0.4s ease, transform 0.3s ease;
-  cursor: default;
+  cursor: pointer;
+}
+
+.lyric-line:hover {
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 137, 172, 0.08);
 }
 
 .lyric-line.section-label {
@@ -217,6 +221,7 @@ svg {
   color: rgba(255, 137, 172, 0.4);
   margin-top: 14px;
   text-transform: uppercase;
+  cursor: default;
 }
 
 .lyric-line.active-lyric {

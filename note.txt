@@ -1,0 +1,17 @@
+
+--—--—<3—--—--
+CAMBIOS
+--—--—<3—--—--
+
+git add .
+git commit -m "Describe los cambios"
+git push
+
+
+--—--—<3—--—--
+ejemplo
+--—--—<3—--—--
+
+git add .
+git commit -m "Agregué sincronización de lyrics"
+git push

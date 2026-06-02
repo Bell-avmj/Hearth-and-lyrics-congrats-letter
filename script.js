@@ -115,9 +115,9 @@ class World {
         this.time.delta * 0.0004 * (1 + this.data);
     }
 
-    // Sync lyrics to current playback time
+    // Sync lyrics
     if (this.isRunning && this.sound && this.sound.context) {
-      const currentSec = this.sound.context.currentTime - this.sound._startedAt + (this.sound._offset || 0);
+      const currentSec = this.sound.context.currentTime - this.sound._startedAt;
       this.updateLyrics(currentSec);
     }
 
@@ -259,14 +259,39 @@ class World {
     this.scene.add(this.model);
   }
 addButton() {
-  this.audioBtn = document.querySelector("#play-music");
   this.lyricsLines = Array.from(document.querySelectorAll(".lyric-line"));
   this.lastLyricIndex = -1;
+  this.audioBtn = document.querySelector("#play-music");
 
+  // Cualquier click inicia la música (solo una vez)
+  // stopPropagation en lyric lines evita conflicto
   window.addEventListener("click", () => {
     if (this.analyser) return;
-    this.loadMusic().then(() => { console.log("music loaded"); });
+    this.loadMusic().then(() => {
+      console.log("music loaded");
+    });
   }, { once: true });
+}
+
+setupLyricClicks() {
+  this.lyricsLines.forEach(el => {
+    el.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (!this.sound || !this.sound.buffer) return;
+      const targetTime = parseFloat(el.dataset.time);
+
+      // Three.js Audio no soporta offset en play()
+      // Hay que parar, reconectar la fuente y reproducir con offset manualmente
+      if (this.sound.isPlaying) this.sound.stop();
+      this.sound.offset = targetTime;
+      this.sound.play();
+      this.sound._startedAt = this.sound.context.currentTime - targetTime;
+      this.isRunning = true;
+      this.lyricsLines.forEach(l => l.classList.remove("active-lyric"));
+      el.classList.add("active-lyric");
+      this.lastLyricIndex = this.lyricsLines.indexOf(el);
+    });
+  });
 }
 
 updateLyrics(currentSec) {
@@ -317,6 +342,7 @@ updateLyrics(currentSec) {
           const data = this.analyser.getAverageFrequency();
           this.isRunning = true;
           this.t0 = this.time.elapsed;
+          this.setupLyricClicks();
           resolve(data);
         },
         progress => {
