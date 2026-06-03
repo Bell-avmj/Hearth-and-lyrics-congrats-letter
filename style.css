@@ -78,23 +78,7 @@ svg {
   display:none !important;
 }
 
-#lyricsBtn{
-  position:absolute;
-  top:20px;
-  right:20px;
-  z-index:1000;
 
-  background:rgba(255,137,172,.2);
-  border:2px solid #ff89ac;
-  color:white;
-
-  padding:12px 20px;
-  border-radius:20px;
-
-  cursor:pointer;
-  font-size:16px;
-  backdrop-filter:blur(10px);
-}
 
 #lyricsModal{
   position:fixed;
@@ -151,32 +135,7 @@ svg {
   white-space:pre-line;
 }
 
-#lyricsBtn{
-  position: fixed !important;
-  top: 25px !important;
-  right: 25px !important;
-  left: auto !important;
-  bottom: auto !important;
 
-  width: auto !important;
-  height: auto !important;
-
-  transform: none !important;
-  margin: 0 !important;
-
-  background: rgba(255,137,172,.2);
-  border: 2px solid #ff89ac;
-  color: white;
-
-  padding: 12px 20px;
-  border-radius: 20px;
-
-  cursor: pointer;
-  font-size: 16px;
-  backdrop-filter: blur(10px);
-
-  z-index: 1000;
-}
 
 #closeLyrics{
   position: absolute !important;
@@ -245,29 +204,58 @@ svg {
   left: 25px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
   z-index: 1000;
+  width: 80px;
 }
 
-#letterBtn, #memoriesBtn {
+#letterBtn, #memoriesBtn, #lyricsBtn {
   position: static !important;
   width: auto !important;
   height: auto !important;
+  min-height: 0 !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
   transform: none !important;
   margin: 0 !important;
-  background: rgba(255, 137, 172, 0.2);
-  border: 2px solid #ff89ac;
+  background: transparent;
+  border: none;
   color: white;
-  padding: 12px 20px;
+  padding: 6px 10px !important;
   border-radius: 20px;
   cursor: pointer;
   font-size: 16px;
-  backdrop-filter: blur(10px);
   transition: background 0.3s ease;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 5px;
+  overflow: visible !important;
+  line-height: normal !important;
 }
 
 #letterBtn:hover, #memoriesBtn:hover {
-  background: rgba(255, 137, 172, 0.35);
+  background: rgba(255, 137, 172, 0.1);
+}
+
+#letterBtn img, #memoriesBtn img, #lyricsBtn img {
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: contain;
+  display: block;
+}
+
+#letterBtn span, #memoriesBtn span, #lyricsBtn span {
+  font-size: 0.7rem;
+  color: #ffdada;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  text-align: center;
+  font-family: 'Lilita One', cursive;
 }
 
 /* ── LETTER MODAL ── */
